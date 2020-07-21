@@ -5,6 +5,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StepperComponent } from './stepper/stepper.component';
 import { CardComponent } from './card/card.component';
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatInputModule } from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -14,7 +20,13 @@ import { CardComponent } from './card/card.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

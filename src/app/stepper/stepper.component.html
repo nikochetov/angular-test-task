@@ -1,1 +1,49 @@
-<p>stepper works!</p>
+<mat-horizontal-stepper>
+  <mat-step label="ФИО">
+    <p>
+      <mat-form-field appearance="outline" >
+        <mat-label>Заполните поле</mat-label>
+        <input matInput placeholder="ФИО" type="text" required>
+      </mat-form-field>
+    </p>
+    <div>
+      <button mat-raised-button matStepperNext>Далее</button>
+    </div>
+  </mat-step>
+  <mat-step label="Дата рождения" >
+    <p>
+      <mat-form-field appearance="outline" >
+        <mat-label>Заполните поле</mat-label>
+        <input matInput placeholder="Дата рождения" type="text" required>
+      </mat-form-field>
+    </p>
+    <div>
+      <button mat-raised-button matStepperPrevious>Назад</button>
+      <button mat-raised-button matStepperNext>Далее</button>
+    </div>
+  </mat-step>
+  <mat-step label="Пол" >
+    <p>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1">муж</mat-radio-button>
+        <mat-radio-button value="2">жен</mat-radio-button>
+      </mat-radio-group>
+    </p>
+    <div>
+      <button mat-raised-button matStepperPrevious>Назад</button>
+      <button mat-raised-button matStepperNext>Далее</button>
+    </div>
+  </mat-step>
+  <mat-step label="СНИЛС">
+    <p>
+      <mat-form-field appearance="outline" >
+        <mat-label>Заполните поле</mat-label>
+        <input matInput placeholder="СНИЛС" type="text" required>
+      </mat-form-field>
+    </p>
+    <div>
+      <button mat-raised-button matStepperPrevious>Назад</button>
+      <button mat-raised-button matStepperPrevious>Готово</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
