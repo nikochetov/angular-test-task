@@ -1,3 +1,16 @@
-.card-wrapper {
-  margin-left: 1.5rem;
+.user-wrapper {
+  margin-right: 5rem;
+  margin-top: 3rem;
+}
+mat-radio-button {
+  margin: 1rem 3rem 2.5rem 0rem;
+
+}
+
+button {
+  margin-right: 1rem;
+}
+.wrap {
+  display: flex;
+  justify-content: space-between;
 }

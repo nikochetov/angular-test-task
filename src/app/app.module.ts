@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StepperComponent } from './stepper/stepper.component';
+// import { StepperComponent } from './stepper/stepper.component';
 import { CardComponent } from './card/card.component';
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -16,7 +16,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
-    StepperComponent,
+    // StepperComponent,
     CardComponent
   ],
   imports: [
