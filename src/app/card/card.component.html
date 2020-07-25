@@ -41,8 +41,8 @@
 
     <mat-step label="Пол">
       <mat-radio-group aria-label="Select gender" [(ngModel)]="user.gender" (change)="onHandleChange($event)">
-        <mat-radio-button  value="муж">муж</mat-radio-button>
-        <mat-radio-button  value="жен">жен</mat-radio-button>
+        <mat-radio-button value="муж">муж</mat-radio-button>
+        <mat-radio-button value="жен">жен</mat-radio-button>
       </mat-radio-group>
       <div>
         <button mat-button matStepperPrevious>Назад</button>
@@ -86,6 +86,5 @@
             (click)="addUser()"
             [disabled]="isDisabled"
             color="primary">Добавить в таблицу</button>
-<!--    <button mat-raised-button (click)="addToTable()" color="primary">Добавить в таблицу</button>-->
   </div>
 </mat-card>

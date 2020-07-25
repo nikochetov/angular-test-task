@@ -27,7 +27,12 @@
   <ng-container matColumnDef="remove">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let user; let i = index">
-      <mat-icon (click)="userService.removeUser(i)" aria-hidden="false" color="warn" aria-label="Example home icon">clear</mat-icon>
+      <button class="deleteButton"
+              mat-mini-fab
+              color="primary"
+              (click)="userService.removeUser(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-cell>
 
   </ng-container>
