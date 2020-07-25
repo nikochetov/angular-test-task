@@ -10,7 +10,7 @@ export class TableComponent implements OnInit{
 
   constructor(public userService: UserService) {
   }
-  displayedColumns: string[] = ['userName', 'birth', 'gender', 'snils'];
+  displayedColumns: string[] = ['userName', 'birth', 'gender', 'snils', 'remove'];
 
   ngOnInit(): void {
   }
