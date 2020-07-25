@@ -1,7 +1,7 @@
 export interface User {
   id?: number;
   userName: string;
-  birth: any;
+  dateOfBirth: any;
   gender: string;
   snils: string;
 }

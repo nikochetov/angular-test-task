@@ -1,26 +1,26 @@
-<mat-table [dataSource]="data" class="mat-elevation-z8">
+<mat-table [dataSource]="userService.dataSource" class="mat-elevation-z8">
   <!-- Position Column -->
   <ng-container matColumnDef="userName">
     <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    <mat-cell *matCellDef="let user"> {{user.userName}} </mat-cell>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="birth">
-    <mat-header-cell *matHeaderCellDef> Birth </mat-header-cell>
-    <mat-cell *matCellDef="let element" > {{element.birth}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef> Date of birth </mat-header-cell>
+    <mat-cell *matCellDef="let user" > {{user.dateOfBirth}} </mat-cell>
   </ng-container>
 
   <!-- Weight Column -->
   <ng-container matColumnDef="gender">
     <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.gender}} </mat-cell>
+    <mat-cell *matCellDef="let user"> {{user.gender}} </mat-cell>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="snils">
     <mat-header-cell *matHeaderCellDef> Snils </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.snils}} </mat-cell>
+    <mat-cell *matCellDef="let user"> {{user.snils}} </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

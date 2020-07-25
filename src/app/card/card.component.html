@@ -7,19 +7,30 @@
         <ng-template matStepLabel>ФИО</ng-template>
         <mat-form-field>
           <mat-label>ФИО</mat-label>
-          <input matInput formControlName="userName" placeholder="Фамилия Имя Отчество" required>
+          <input matInput
+                 formControlName="userName"
+                 placeholder="Фамилия Имя Отчество"
+                 [(ngModel)]="user.userName" required>
         </mat-form-field>
         <div>
           <button mat-button matStepperNext >Далее</button>
         </div>
       </form>
     </mat-step>
+
     <mat-step [stepControl]="birthFormGroup" [editable]="isEditable">
       <form [formGroup]="birthFormGroup">
         <ng-template matStepLabel>Дата рождения</ng-template>
         <mat-form-field>
-          <mat-label>Дата рождения</mat-label>
-          <input matInput formControlName="birth" required>
+          <input matInput matDatepickerInput readonly
+                 [max]="maxDate"
+                 [matDatepicker]="picker"
+                 placeholder="Date of birth"
+                 formControlName="dateOfBirth"
+                 [(ngModel)]="user.dateOfBirth"
+                 (dateChange)="date($event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Назад</button>
@@ -27,8 +38,9 @@
         </div>
       </form>
     </mat-step>
+
     <mat-step label="Пол">
-      <mat-radio-group aria-label="Select gender" (change)="onHandleChange($event)">
+      <mat-radio-group aria-label="Select gender" [(ngModel)]="user.gender" (change)="onHandleChange($event)">
         <mat-radio-button  value="муж">муж</mat-radio-button>
         <mat-radio-button  value="жен">жен</mat-radio-button>
       </mat-radio-group>
@@ -42,7 +54,7 @@
         <ng-template matStepLabel>СНИЛС</ng-template>
         <mat-form-field>
           <mat-label>СНИЛС</mat-label>
-          <input matInput formControlName="snils" required>
+          <input matInput formControlName="snils" [(ngModel)]="user.snils" required>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Назад</button>
@@ -61,15 +73,19 @@
   </mat-vertical-stepper>
   <!-- end stepper -->
 
-  <div *ngIf="isSubmit" class="user-wrapper">
+  <div class="user-wrapper">
     <mat-card-header>
-      <mat-card-title *ngIf="user.userName">{{user.userName}}</mat-card-title>
+      <mat-card-title>{{user.userName}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>Дата рождения: {{user.birth}}</p>
+      <p>Дата рождения: {{user.dateOfBirth}}</p>
       <p>Пол: {{user.gender}}</p>
       <p>СНИЛС: {{user.snils}}</p>
     </mat-card-content>
-    <button mat-raised-button (click)="addToTable()" [disabled]="isDisabled" color="primary">Добавить в таблицу</button>
+    <button mat-raised-button
+            (click)="addUser()"
+            [disabled]="isDisabled"
+            color="primary">Добавить в таблицу</button>
+<!--    <button mat-raised-button (click)="addToTable()" color="primary">Добавить в таблицу</button>-->
   </div>
 </mat-card>

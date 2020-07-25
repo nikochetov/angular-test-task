@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import {User} from '../user';
-import {MatTableDataSource} from "@angular/material/table";
+import {MatTableDataSource} from '@angular/material/table';
 
 
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class UserService {
-  users: User[] = [
-    ];
-  dataSource = new MatTableDataSource(this.users);
-
-  addToTable(user): void {
-    this.users.push(user);
-    this.dataSource = new MatTableDataSource<User>(this.users);
-    console.log(this.users);
+  user: User;
+  USERS_DATA: User[] = [];
+  dataSource = new MatTableDataSource(this.USERS_DATA);
+  addUser(user): any {
+    this.USERS_DATA.push(user);
+    this.dataSource = new MatTableDataSource(this.USERS_DATA);
   }
 }
+
