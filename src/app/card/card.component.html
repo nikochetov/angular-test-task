@@ -52,15 +52,25 @@
       </form>
     </mat-step>
 
-    <mat-step label="Пол">
-      <mat-radio-group aria-label="Select gender" [(ngModel)]="user.gender" (change)="onHandleChange($event)">
-        <mat-radio-button value="муж">муж</mat-radio-button>
-        <mat-radio-button value="жен">жен</mat-radio-button>
-      </mat-radio-group>
-      <div>
-        <button mat-button matStepperPrevious>Назад</button>
-        <button mat-button matStepperNext>Далее</button>
-      </div>
+    <mat-step [stepControl]="genderFormGroup" label="Пол">
+      <form [formGroup]="genderFormGroup">
+        <mat-radio-group aria-label="Select gender"
+                         [(ngModel)]="user.gender"
+                         formControlName="gender"
+                         (change)="onHandleChange($event)"
+        >
+          <mat-radio-button value="муж">муж</mat-radio-button>
+          <mat-radio-button value="жен">жен</mat-radio-button>
+        </mat-radio-group>
+        <div>
+          <button mat-button matStepperPrevious>Назад</button>
+          <button mat-button matStepperNext
+                  type="button"
+                  [disabled]="genderFormGroup.invalid"
+          >Далее</button>
+        </div>
+      </form>
+
     </mat-step>
     <mat-step [stepControl]="snilsFormGroup" [editable]="isEditable">
       <form [formGroup]="snilsFormGroup">

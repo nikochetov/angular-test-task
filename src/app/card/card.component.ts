@@ -13,8 +13,8 @@ export class CardComponent implements OnInit {
   userNameFormGroup: FormGroup;
   birthFormGroup: FormGroup;
   snilsFormGroup: FormGroup;
+  genderFormGroup: FormGroup;
   isEditable = false;
-  gender: string;
   user: User = {
     userName: '',
     dateOfBirth: '',
@@ -35,15 +35,20 @@ export class CardComponent implements OnInit {
         Validators.required
       ])
     });
-    this.snilsFormGroup = this.formBuilder.group({
-      snils: ['',
-        // Validators.required,
-        Validators.pattern(/^[0-9]+(?!.)/),
-        // Validators.required
-      ]
+    this.birthFormGroup = new FormGroup({
+      dateOfBirth: new FormControl('', [
+        Validators.required
+      ])
     });
-    this.birthFormGroup = this.formBuilder.group({
-      dateOfBirth: ['']
+    this.genderFormGroup = new FormGroup({
+      gender: new FormControl('', [
+        Validators.required
+      ])
+    });
+    this.snilsFormGroup = new FormGroup({
+      snils: new FormControl('', [
+        Validators.required
+      ])
     });
   }
   get _userName(): any {
@@ -58,13 +63,14 @@ export class CardComponent implements OnInit {
 
 
   onHandleChange(event): void {
-    this.gender = event.value;
+    console.log(event.value);
+    this.genderFormGroup.get('gender').setValue(event.value);
   }
   onSubmit(): void {
     this.userService.user = {
       ...this.userNameFormGroup.value,
       ...this.birthFormGroup.value,
-      gender: this.gender,
+      ...this.genderFormGroup.value,
       ...this.snilsFormGroup.value
     };
     this.isSubmit = true;
