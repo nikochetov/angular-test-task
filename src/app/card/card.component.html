@@ -13,8 +13,8 @@
                  [(ngModel)]="user.userName" required>
         </mat-form-field>
         <div>
-          <div *ngIf="userNameFormGroup.get('userName').invalid && userNameFormGroup.get('userName').dirty">
-            <span *ngIf="userNameFormGroup.get('userName').errors.pattern"
+          <div *ngIf="_userName.invalid && _userName.dirty">
+            <span *ngIf="_userName.errors.pattern"
                   class="validator-warn"
             >Только символы 'А-Я', 'а-я'</span>
           </div>

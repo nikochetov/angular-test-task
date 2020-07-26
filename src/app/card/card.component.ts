@@ -46,7 +46,9 @@ export class CardComponent implements OnInit {
       dateOfBirth: ['']
     });
   }
-
+  get _userName(): any {
+    return this.userNameFormGroup.get('userName');
+  }
   get _snils(): any {
     return this.snilsFormGroup.get('snils');
   }
