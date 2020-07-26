@@ -63,7 +63,6 @@ export class CardComponent implements OnInit {
 
 
   onHandleChange(event): void {
-    console.log(event.value);
     this.genderFormGroup.get('gender').setValue(event.value);
   }
   onSubmit(): void {
