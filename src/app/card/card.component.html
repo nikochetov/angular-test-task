@@ -13,7 +13,15 @@
                  [(ngModel)]="user.userName" required>
         </mat-form-field>
         <div>
-          <button mat-button matStepperNext >Далее</button>
+          <div *ngIf="userNameFormGroup.get('userName').invalid && userNameFormGroup.get('userName').dirty">
+            <span *ngIf="userNameFormGroup.get('userName').errors.pattern"
+                  class="validator-warn"
+            >Только символы 'А-Я', 'а-я'</span>
+          </div>
+          <button mat-button
+                  matStepperNext
+                  type="button"
+                  [disabled]="userNameFormGroup.invalid">Далее</button>
         </div>
       </form>
     </mat-step>
@@ -56,6 +64,11 @@
           <mat-label>СНИЛС</mat-label>
           <input matInput formControlName="snils" [(ngModel)]="user.snils" required>
         </mat-form-field>
+        <div >
+          <span *ngIf="_snils.errors?.pattern"
+                class="validator-warn"
+          >Разрешаются только цифры</span>
+        </div>
         <div>
           <button mat-button matStepperPrevious>Назад</button>
           <button mat-button matStepperNext>Далее</button>

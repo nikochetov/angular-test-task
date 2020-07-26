@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../services/user.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../user';
 
 @Component({
@@ -29,16 +29,32 @@ export class CardComponent implements OnInit {
               public userService: UserService) {}
 
   ngOnInit(): void {
-    this.userNameFormGroup = this.formBuilder.group({
-      userName: ['', Validators.required],
+    this.userNameFormGroup = new FormGroup({
+      userName: new FormControl('', [
+        Validators.pattern(/^[А-Я, а-я]/),
+        Validators.required
+      ])
     });
     this.snilsFormGroup = this.formBuilder.group({
-      snils: ['', Validators.required]
+      snils: ['',
+        // Validators.required,
+        Validators.pattern(/^[0-9]+(?!.)/),
+        // Validators.required
+      ]
     });
     this.birthFormGroup = this.formBuilder.group({
       dateOfBirth: ['']
     });
   }
+
+  get _snils(): any {
+    return this.snilsFormGroup.get('snils');
+  }
+  get _dateOfBirth(): any {
+    return this.snilsFormGroup.get('dateOfBirth');
+  }
+
+
   onHandleChange(event): void {
     this.gender = event.value;
   }
