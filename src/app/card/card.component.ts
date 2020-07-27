@@ -26,7 +26,7 @@ export class CardComponent implements OnInit {
   isSubmit = false;
   isDisabled = true;
   maxDate = new Date();
-  // mask = [/[1-9]/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, ' ', /\d/, /\d/];
+  mask = [/[1-9]/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, ' ', /\d/, /\d/];
   constructor(public userService: UserService) {}
 
   ngOnInit(): void {
@@ -49,7 +49,6 @@ export class CardComponent implements OnInit {
     this.snilsFormGroup = new FormGroup({
       snils: new FormControl('', [
         Validators.required,
-        Validators.minLength(11),
         validateSNILS
       ])
     });

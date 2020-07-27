@@ -1,11 +1,11 @@
-import {AbstractControl, ValidatorFn} from '@angular/forms';
+import {AbstractControl} from '@angular/forms';
 
 export function validateSNILS(control: AbstractControl): {[key: string]: boolean} | null {
   let num: any = control.value;
   if (num === null) {
     return;
   }
-  if (num.length === 11) {
+  if (num.length === 14) {
     num = num.replace(/\D/g, '');
     if (/(\d)\1\1/.test(num)) {
       return { invalid: true };

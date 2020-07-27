@@ -21,6 +21,8 @@
     "@angular/platform-browser": "~10.0.4",
     "@angular/platform-browser-dynamic": "~10.0.4",
     "@angular/router": "~10.0.4",
+    "angular2-text-mask": "^9.0.0",
+    "angular7-text-mask": "^9.0.0",
     "moment": "^2.27.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

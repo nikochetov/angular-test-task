@@ -79,9 +79,9 @@
         <mat-form-field>
           <mat-label>СНИЛС</mat-label>
           <input matInput
-                 maxlength="11"
                  formControlName="snils"
                  [(ngModel)]="user.snils"
+                 [textMask]="{mask: mask}"
                  required>
         </mat-form-field>
         <div>

@@ -18,6 +18,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {UserService} from './services/user.service';
 import {MatIconModule} from '@angular/material/icon';
+import {TextMaskModule} from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {MatIconModule} from '@angular/material/icon';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    TextMaskModule,
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
