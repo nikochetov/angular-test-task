@@ -1,4 +1,26 @@
+<div *ngIf="isSelect">
+  <button (click)="remove()">butt</button>
+</div>
 <mat-table [dataSource]="userService.dataSource" class="mat-elevation-z8">
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell class="checkbox" *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell class="checkbox" *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+<!--    <td mat-footer-cell *matFooterCellDef>434522565432452432453</td>-->
+  </ng-container>
+
   <!-- Position Column -->
   <ng-container matColumnDef="userName">
     <mat-header-cell *matHeaderCellDef> ФИО </mat-header-cell>
@@ -22,21 +44,9 @@
     <mat-header-cell *matHeaderCellDef> СНИЛС </mat-header-cell>
     <mat-cell *matCellDef="let user"> {{user.snils}} </mat-cell>
   </ng-container>
-
-  <!-- Remove icon -->
-  <ng-container matColumnDef="remove">
-    <mat-header-cell *matHeaderCellDef></mat-header-cell>
-    <mat-cell *matCellDef="let user; let i = index">
-      <button class="deleteButton"
-              mat-mini-fab
-              color="primary"
-              (click)="userService.removeUser(i)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-cell>
-
-  </ng-container>
-
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <mat-header-row class="row" *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row class="row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+<!--  <mat-footer-row *matFooterRowDef></mat-footer-row>-->
 </mat-table>
+<button mat-button *ngIf="selection.hasValue()" (click)="remove()">Удалить</button>
+

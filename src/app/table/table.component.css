@@ -4,3 +4,10 @@ table {
 .deleteButton {
   margin-left: 2rem;
 }
+.checkbox {
+  border-bottom: none;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}

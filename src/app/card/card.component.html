@@ -77,16 +77,21 @@
         <ng-template matStepLabel>СНИЛС</ng-template>
         <mat-form-field>
           <mat-label>СНИЛС</mat-label>
-          <input matInput formControlName="snils" [(ngModel)]="user.snils" required>
+          <input matInput
+                 maxlength="11"
+                 formControlName="snils"
+                 [(ngModel)]="user.snils"
+                 required>
         </mat-form-field>
-        <div >
-          <span *ngIf="_snils.errors?.pattern"
-                class="validator-warn"
-          >Разрешаются только цифры</span>
-        </div>
         <div>
-          <button mat-button matStepperPrevious>Назад</button>
-          <button mat-button matStepperNext>Далее</button>
+          <div *ngIf="_snils.invalid && _snils.touched">
+            <span *ngIf="_snils.errors.invalid"
+                  class="validator-warn"
+            >Невалид</span>
+        </div>
+
+            <button mat-button matStepperPrevious>Назад</button>
+          <button mat-button matStepperNext [disabled]="snilsFormGroup.invalid">Далее</button>
         </div>
       </form>
     </mat-step>

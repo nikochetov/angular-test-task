@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../services/user.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../user';
+// import {validateSNILS} from '../my.validators';
 
 @Component({
   selector: 'app-card',
@@ -15,6 +16,7 @@ export class CardComponent implements OnInit {
   snilsFormGroup: FormGroup;
   genderFormGroup: FormGroup;
   isEditable = false;
+  id = 0;
   user: User = {
     userName: '',
     dateOfBirth: '',
@@ -24,14 +26,13 @@ export class CardComponent implements OnInit {
   isSubmit = false;
   isDisabled = true;
   maxDate = new Date();
-
-  constructor(private formBuilder: FormBuilder,
-              public userService: UserService) {}
+  // mask = [/[1-9]/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, ' ', /\d/, /\d/];
+  constructor(public userService: UserService) {}
 
   ngOnInit(): void {
     this.userNameFormGroup = new FormGroup({
       userName: new FormControl('', [
-        Validators.pattern(/^[А-Я, а-я]/),
+        Validators.pattern(/(^[А-Я]{1}[а-я]{1,14} [А-Я]{1}[а-я]{1,14} [А-Я]{1}[а-я]{1,14}$)/),
         Validators.required
       ])
     });
@@ -47,7 +48,9 @@ export class CardComponent implements OnInit {
     });
     this.snilsFormGroup = new FormGroup({
       snils: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.minLength(11),
+        // validateSNILS
       ])
     });
   }
@@ -61,12 +64,12 @@ export class CardComponent implements OnInit {
     return this.snilsFormGroup.get('dateOfBirth');
   }
 
-
   onHandleChange(event): void {
     this.genderFormGroup.get('gender').setValue(event.value);
   }
   onSubmit(): void {
     this.userService.user = {
+      id: this.id += 1,
       ...this.userNameFormGroup.value,
       ...this.birthFormGroup.value,
       ...this.genderFormGroup.value,
