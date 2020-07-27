@@ -1,7 +1,8 @@
 <mat-card class="wrap">
 
   <!-- begin stepper -->
-  <mat-vertical-stepper linear #stepper>
+  <mat-vertical-stepper linear
+                        #stepper>
     <mat-step [stepControl]="userNameFormGroup" [editable]="isEditable">
       <form [formGroup]="userNameFormGroup">
         <ng-template matStepLabel>ФИО</ng-template>
@@ -100,7 +101,7 @@
       <p>You are now done.</p>
       <div>
         <button mat-button matStepperPrevious>Назад</button>
-        <button mat-button (click)="onSubmit()">Готово</button>
+        <button mat-button type="submit" (click)="onSubmit()">Готово</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>

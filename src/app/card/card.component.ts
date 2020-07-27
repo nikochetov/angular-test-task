@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../user';
-// import {validateSNILS} from '../my.validators';
+import {validateSNILS} from '../my.validators';
 
 @Component({
   selector: 'app-card',
@@ -21,7 +21,7 @@ export class CardComponent implements OnInit {
     userName: '',
     dateOfBirth: '',
     gender: '',
-    snils: '',
+    snils: ''
     };
   isSubmit = false;
   isDisabled = true;
@@ -32,7 +32,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     this.userNameFormGroup = new FormGroup({
       userName: new FormControl('', [
-        Validators.pattern(/(^[А-Я]{1}[а-я]{1,14} [А-Я]{1}[а-я]{1,14} [А-Я]{1}[а-я]{1,14}$)/),
+        Validators.pattern(/^[А-Я, а-я]/),
         Validators.required
       ])
     });
@@ -50,7 +50,7 @@ export class CardComponent implements OnInit {
       snils: new FormControl('', [
         Validators.required,
         Validators.minLength(11),
-        // validateSNILS
+        validateSNILS
       ])
     });
   }
@@ -60,10 +60,6 @@ export class CardComponent implements OnInit {
   get _snils(): any {
     return this.snilsFormGroup.get('snils');
   }
-  get _dateOfBirth(): any {
-    return this.snilsFormGroup.get('dateOfBirth');
-  }
-
   onHandleChange(event): void {
     this.genderFormGroup.get('gender').setValue(event.value);
   }
@@ -77,11 +73,13 @@ export class CardComponent implements OnInit {
     };
     this.isSubmit = true;
     this.isDisabled = false;
+    console.log(this.userService.user);
   }
 
   addUser(): void {
     this.userService.addUser(this.userService.user);
     this.stepper.reset();
+    this.snilsFormGroup.clearValidators();
     this.isDisabled = !this.isDisabled;
   }
   // date(e): void {
