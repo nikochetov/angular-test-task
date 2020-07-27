@@ -73,7 +73,6 @@ export class CardComponent implements OnInit {
     };
     this.isSubmit = true;
     this.isDisabled = false;
-    console.log(this.userService.user);
   }
 
   addUser(): void {
