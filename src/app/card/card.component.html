@@ -1,12 +1,11 @@
 <mat-card class="wrap">
 
   <!-- begin stepper -->
-  <mat-vertical-stepper linear
-                        #stepper>
-    <mat-step [stepControl]="userNameFormGroup" [editable]="isEditable">
+  <mat-vertical-stepper linear #stepper>
+    <mat-step [stepControl]="userNameFormGroup" >
       <form [formGroup]="userNameFormGroup">
         <ng-template matStepLabel>ФИО</ng-template>
-        <mat-form-field>
+        <mat-form-field >
           <mat-label>ФИО</mat-label>
           <input matInput
                  formControlName="userName"
@@ -22,12 +21,13 @@
           <button mat-button
                   matStepperNext
                   type="button"
-                  [disabled]="userNameFormGroup.invalid">Далее</button>
+                  [disabled]="userNameFormGroup.invalid"
+          >Далее</button>
         </div>
       </form>
     </mat-step>
 
-    <mat-step [stepControl]="birthFormGroup" [editable]="isEditable">
+    <mat-step [stepControl]="birthFormGroup">
       <form [formGroup]="birthFormGroup">
         <ng-template matStepLabel>Дата рождения</ng-template>
         <mat-form-field>
@@ -73,7 +73,7 @@
       </form>
 
     </mat-step>
-    <mat-step [stepControl]="snilsFormGroup" [editable]="isEditable">
+    <mat-step [stepControl]="snilsFormGroup">
       <form [formGroup]="snilsFormGroup">
         <ng-template matStepLabel>СНИЛС</ng-template>
         <mat-form-field>
@@ -88,20 +88,19 @@
           <div *ngIf="_snils.invalid && _snils.touched">
             <span *ngIf="_snils.errors.invalid"
                   class="validator-warn"
-            >Невалид</span>
+            >Введите валидный СНИЛС.</span>
         </div>
-
-            <button mat-button matStepperPrevious>Назад</button>
+          <button mat-button matStepperPrevious>Назад</button>
           <button mat-button matStepperNext [disabled]="snilsFormGroup.invalid">Далее</button>
         </div>
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
+      <ng-template matStepLabel>Готово</ng-template>
+      <p>Проверьте введенные данные и нажмите "Готово".</p>
       <div>
         <button mat-button matStepperPrevious>Назад</button>
-        <button mat-button type="submit" (click)="onSubmit()">Готово</button>
+        <button mat-button  type="submit" (click)="onSubmit()">Готово</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>
@@ -112,13 +111,14 @@
       <mat-card-title>{{user.userName}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>Дата рождения: {{user.dateOfBirth}}</p>
+      <p>Дата рождения: {{user.dateOfBirth | date: 'dd.MM.yyyy'}}</p>
       <p>Пол: {{user.gender}}</p>
       <p>СНИЛС: {{user.snils}}</p>
     </mat-card-content>
     <button mat-raised-button
             (click)="addUser()"
             [disabled]="isDisabled"
-            color="primary">Добавить в таблицу</button>
+            color="primary"
+    >Добавить в таблицу</button>
   </div>
 </mat-card>

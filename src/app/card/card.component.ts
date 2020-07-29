@@ -1,35 +1,41 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {UserService} from '../services/user.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {User} from '../user';
-import {validateSNILS} from '../my.validators';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from '../user';
+import { validateSNILS } from '../my.validators';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
+  providers: []
 })
+
 export class CardComponent implements OnInit {
   @ViewChild('stepper') stepper;
   userNameFormGroup: FormGroup;
   birthFormGroup: FormGroup;
   snilsFormGroup: FormGroup;
   genderFormGroup: FormGroup;
-  isEditable = false;
   id = 0;
   user: User = {
     userName: '',
-    dateOfBirth: '',
     gender: '',
-    snils: ''
+    snils: '',
+    dateOfBirth: ''
     };
   isSubmit = false;
   isDisabled = true;
   maxDate = new Date();
   mask = [/[1-9]/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, ' ', /\d/, /\d/];
-  constructor(public userService: UserService) {}
+
+  constructor(public userService: UserService) {
+  }
 
   ngOnInit(): void {
+    moment().format();
     this.userNameFormGroup = new FormGroup({
       userName: new FormControl('', [
         Validators.pattern(/^[А-Я, а-я]/),
@@ -37,9 +43,7 @@ export class CardComponent implements OnInit {
       ])
     });
     this.birthFormGroup = new FormGroup({
-      dateOfBirth: new FormControl('', [
-        Validators.required
-      ])
+      dateOfBirth: new FormControl()
     });
     this.genderFormGroup = new FormGroup({
       gender: new FormControl('', [
@@ -53,20 +57,28 @@ export class CardComponent implements OnInit {
       ])
     });
   }
-  get _userName(): any {
+
+  get _userName(): AbstractControl {
     return this.userNameFormGroup.get('userName');
   }
-  get _snils(): any {
+
+  get _snils(): AbstractControl {
     return this.snilsFormGroup.get('snils');
   }
+
+  get _dateOfBirth(): AbstractControl {
+    return this.birthFormGroup.get('dateOfBirth');
+  }
+
   onHandleChange(event): void {
     this.genderFormGroup.get('gender').setValue(event.value);
   }
+
   onSubmit(): void {
     this.userService.user = {
       id: this.id += 1,
       ...this.userNameFormGroup.value,
-      ...this.birthFormGroup.value,
+      dateOfBirth: this.formatDate(this._dateOfBirth.value),
       ...this.genderFormGroup.value,
       ...this.snilsFormGroup.value
     };
@@ -80,20 +92,12 @@ export class CardComponent implements OnInit {
     this.snilsFormGroup.clearValidators();
     this.isDisabled = !this.isDisabled;
   }
-  // date(e): void {
-  //   console.log(e.target.value);
-  //   const date = e.target.value;
-  //   const formatted = moment(date).format('DD MMMM YYYY');
-  //   console.log(formatted);
-  //   this.birthFormGroup.get('dateOfBirth').setValue(formatted);
-  //   console.log(this.birthFormGroup);
-  // }
-  date(e): void {
-    const convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-    this.birthFormGroup.get('dateOfBirth').setValue(convertDate, {
-      onlyself: true
-    });
+
+  formatDate(date): string {
+    return moment(date).format('DD.MM.yyyy');
   }
 
-
+  date({value}): void {
+    this._dateOfBirth.setValue(value);
+  }
 }
