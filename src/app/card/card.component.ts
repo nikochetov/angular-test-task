@@ -20,12 +20,6 @@ export class CardComponent implements OnInit {
   snilsFormGroup: FormGroup;
   genderFormGroup: FormGroup;
   id = 0;
-  user: User = {
-    userName: '',
-    gender: '',
-    snils: '',
-    dateOfBirth: ''
-    };
   isSubmit = false;
   isDisabled = true;
   maxDate = new Date();
@@ -69,6 +63,7 @@ export class CardComponent implements OnInit {
   get _dateOfBirth(): AbstractControl {
     return this.birthFormGroup.get('dateOfBirth');
   }
+
   get _gender(): AbstractControl {
     return this.genderFormGroup.get('gender');
   }
