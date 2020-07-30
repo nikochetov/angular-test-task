@@ -1,8 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../user';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-table',
@@ -36,7 +34,5 @@ export class TableComponent implements OnInit{
     }
     return `${this.userService.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id}`;
   }
-
-
 }
 

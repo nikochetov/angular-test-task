@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../user';
 import { MatTableDataSource } from '@angular/material/table';
-import {SelectionModel} from '@angular/cdk/collections';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
