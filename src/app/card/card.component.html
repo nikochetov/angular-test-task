@@ -10,7 +10,7 @@
           <input matInput
                  formControlName="userName"
                  placeholder="Фамилия Имя Отчество"
-                 [(ngModel)]="user.userName" required>
+                 required>
         </mat-form-field>
         <div>
           <div *ngIf="_userName.invalid && _userName.dirty">
@@ -36,7 +36,6 @@
                  [matDatepicker]="picker"
                  placeholder="Дата рождения"
                  formControlName="dateOfBirth"
-                 [(ngModel)]="user.dateOfBirth"
                  (dateChange)="date($event)"
                  required
           >
@@ -56,7 +55,6 @@
     <mat-step [stepControl]="genderFormGroup" label="Пол">
       <form [formGroup]="genderFormGroup">
         <mat-radio-group aria-label="Select gender"
-                         [(ngModel)]="user.gender"
                          formControlName="gender"
                          (change)="onHandleChange($event)"
         >
@@ -80,7 +78,6 @@
           <mat-label>СНИЛС</mat-label>
           <input matInput
                  formControlName="snils"
-                 [(ngModel)]="user.snils"
                  [textMask]="{mask: mask}"
                  required>
         </mat-form-field>
@@ -108,12 +105,12 @@
 
   <div class="user-wrapper">
     <mat-card-header>
-      <mat-card-title>{{user.userName}}</mat-card-title>
+      <mat-card-title>{{_userName.value}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>Дата рождения: {{user.dateOfBirth | date: 'dd.MM.yyyy'}}</p>
-      <p>Пол: {{user.gender}}</p>
-      <p>СНИЛС: {{user.snils}}</p>
+      <p>Дата рождения: {{_dateOfBirth.value | date: 'dd.MM.yyyy'}}</p>
+      <p>Пол: {{_gender.value}}</p>
+      <p>СНИЛС: {{_snils.value}}</p>
     </mat-card-content>
     <button mat-raised-button
             (click)="addUser()"

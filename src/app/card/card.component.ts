@@ -69,6 +69,9 @@ export class CardComponent implements OnInit {
   get _dateOfBirth(): AbstractControl {
     return this.birthFormGroup.get('dateOfBirth');
   }
+  get _gender(): AbstractControl {
+    return this.genderFormGroup.get('gender');
+  }
 
   onHandleChange(event): void {
     this.genderFormGroup.get('gender').setValue(event.value);

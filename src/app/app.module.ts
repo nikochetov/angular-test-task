@@ -46,7 +46,6 @@ import {TextMaskModule} from 'angular2-text-mask';
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
-
     UserService
   ],
   bootstrap: [AppComponent]
