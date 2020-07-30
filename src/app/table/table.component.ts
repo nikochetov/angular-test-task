@@ -15,7 +15,6 @@ export class TableComponent implements OnInit{
   }
   displayedColumns: string[] = ['select', 'userName', 'birth', 'gender', 'snils'];
   selection = new SelectionModel<User>(true, []);
-  isSelect = false;
 
   ngOnInit(): void {
   }
