@@ -89,7 +89,6 @@ export class CardComponent implements OnInit {
   addUser(): void {
     this.userService.addUser(this.userService.user);
     this.stepper.reset();
-    this.snilsFormGroup.clearValidators();
     this.isDisabled = !this.isDisabled;
   }
 
