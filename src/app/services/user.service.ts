@@ -15,7 +15,7 @@ export class UserService {
     this.dataSource = new MatTableDataSource(this.USERS_DATA);
   }
 
-  remove(): void {
+  removeFromTable(): void {
     const ids: number[] = this.selection.selected.map(user => user.id);
     this.USERS_DATA = this.USERS_DATA.filter((user: User) => !ids.includes(user.id));
     this.dataSource = new MatTableDataSource(this.USERS_DATA);
