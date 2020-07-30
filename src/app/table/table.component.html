@@ -3,15 +3,15 @@
   <ng-container matColumnDef="select">
     <th mat-header-cell class="checkbox" *matHeaderCellDef>
       <mat-checkbox (change)="$event ? masterToggle() : null"
-                    [checked]="selection.hasValue() && isAllSelected()"
-                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [checked]="userService.selection.hasValue() && isAllSelected()"
+                    [indeterminate]="userService.selection.hasValue() && !isAllSelected()"
                     [aria-label]="checkboxLabel()">
       </mat-checkbox>
     </th>
     <td mat-cell class="checkbox" *matCellDef="let row">
       <mat-checkbox (click)="$event.stopPropagation()"
-                    (change)="$event ? selection.toggle(row) : null"
-                    [checked]="selection.isSelected(row)"
+                    (change)="$event ? userService.selection.toggle(row) : null"
+                    [checked]="userService.selection.isSelected(row)"
                     [aria-label]="checkboxLabel(row)">
       </mat-checkbox>
     </td>
@@ -43,5 +43,5 @@
   <mat-header-row class="row" *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-<button mat-button *ngIf="selection.hasValue()" (click)="remove()">Удалить</button>
+<button mat-button *ngIf="userService.selection.hasValue()" (click)="userService.remove()">Удалить</button>
 
