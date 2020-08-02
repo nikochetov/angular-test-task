@@ -1,7 +1,7 @@
 <mat-table [dataSource]="userService.dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="removeButton" >
-    <th class="removeButton" mat-header-cell *matHeaderCellDef >
+    <th class="removeButton" mat-header-cell *matFooterCellDef >
       <button mat-button color="warn"
               [disabled]="!selection.hasValue()"
               (click)="removeFromTable()"
@@ -46,7 +46,7 @@
     <mat-cell *matCellDef="let user"> {{user.snils}} </mat-cell>
   </ng-container>
 
-  <mat-header-row class="row"  *matHeaderRowDef="['removeButton']" ></mat-header-row>
+  <mat-header-row class="row"  *matFooterRowDef="['removeButton']" ></mat-header-row>
 
   <mat-header-row class="row" *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
