@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from '../user';
 import { validateSNILS } from '../my.validators';
 import * as moment from 'moment';
 
@@ -85,11 +84,12 @@ export class CardComponent implements OnInit {
     this.isDisabled = false;
     this.editable = !this.editable;
   }
-
   addUser(): void {
     this.userService.addUser(this.userService.user);
     this.stepper.reset();
     this.isDisabled = !this.isDisabled;
+    this.isSubmit = !this.isSubmit;
+    this.editable = !this.editable;
   }
 
   formatDate(date): string {

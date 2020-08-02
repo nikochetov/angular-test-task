@@ -97,8 +97,12 @@
       <ng-template matStepLabel>Готово</ng-template>
       <p>Проверьте введенные данные и нажмите "Готово".</p>
       <div>
-        <button mat-button matStepperPrevious>Назад</button>
-        <button mat-button matStepper type="submit" (click)="onSubmit()">Готово</button>
+        <button mat-button matStepperPrevious [disabled]="isSubmit">Назад</button>
+        <button mat-button
+                matStepper
+                type="submit"
+                [disabled]="isSubmit"
+                (click)="onSubmit()">Готово</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>
