@@ -20,6 +20,7 @@ export class CardComponent implements OnInit {
   snilsFormGroup: FormGroup;
   genderFormGroup: FormGroup;
   id = 0;
+  editable = true;
   isSubmit = false;
   isDisabled = true;
   maxDate = new Date();
@@ -82,6 +83,7 @@ export class CardComponent implements OnInit {
     };
     this.isSubmit = true;
     this.isDisabled = false;
+    this.editable = !this.editable;
   }
 
   addUser(): void {
@@ -96,5 +98,9 @@ export class CardComponent implements OnInit {
 
   date({value}): void {
     this._dateOfBirth.setValue(value);
+  }
+
+  clicked(e): void {
+    console.log(e);
   }
 }
