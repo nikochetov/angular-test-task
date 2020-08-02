@@ -1,5 +1,14 @@
 <mat-table [dataSource]="userService.dataSource" class="mat-elevation-z8">
-  <!-- Checkbox Column -->
+
+  <ng-container matColumnDef="removeButton" >
+    <th class="removeButton" mat-header-cell *matHeaderCellDef >
+      <button mat-button color="warn"
+              [disabled]="!selection.hasValue()"
+              (click)="removeFromTable()"
+      >Удалить</button>
+    </th>
+  </ng-container>
+
   <ng-container matColumnDef="select">
     <th mat-header-cell class="checkbox" *matHeaderCellDef>
       <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -37,8 +46,8 @@
     <mat-cell *matCellDef="let user"> {{user.snils}} </mat-cell>
   </ng-container>
 
+  <mat-header-row class="row"  *matHeaderRowDef="['removeButton']" ></mat-header-row>
+
   <mat-header-row class="row" *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-<button mat-button *ngIf="selection.hasValue()" (click)="removeFromTable()">Удалить</button>
-

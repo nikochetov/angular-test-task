@@ -7,7 +7,7 @@ mat-header-cell, mat-cell {
 .deleteButton {
   margin-left: 2rem;
 }
-.checkbox {
+.checkbox, .removeButton {
   border-bottom: none;
 }
 .row {
