@@ -1,6 +1,9 @@
 table {
   width: 100%;
 }
+mat-header-cell, mat-cell {
+  justify-content: space-around;
+}
 .deleteButton {
   margin-left: 2rem;
 }
