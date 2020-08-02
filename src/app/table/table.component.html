@@ -17,29 +17,26 @@
     </td>
   </ng-container>
 
-  <!-- Position Column -->
   <ng-container matColumnDef="userName">
     <mat-header-cell *matHeaderCellDef> ФИО </mat-header-cell>
     <mat-cell *matCellDef="let user"> {{user.userName}} </mat-cell>
   </ng-container>
 
-  <!-- Name Column -->
   <ng-container matColumnDef="birth">
     <mat-header-cell *matHeaderCellDef> Дата рождения </mat-header-cell>
     <mat-cell *matCellDef="let user" > {{user.dateOfBirth}} </mat-cell>
   </ng-container>
 
-  <!-- Weight Column -->
   <ng-container matColumnDef="gender">
     <mat-header-cell *matHeaderCellDef> Пол </mat-header-cell>
     <mat-cell *matCellDef="let user"> {{user.gender}} </mat-cell>
   </ng-container>
 
-  <!-- Symbol Column -->
   <ng-container matColumnDef="snils">
     <mat-header-cell *matHeaderCellDef> СНИЛС </mat-header-cell>
     <mat-cell *matCellDef="let user"> {{user.snils}} </mat-cell>
   </ng-container>
+
   <mat-header-row class="row" *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row class="row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
