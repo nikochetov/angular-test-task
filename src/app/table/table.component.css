@@ -1,5 +1,5 @@
-table {
-  width: 100%;
+mat-table {
+  margin-top: 1rem;
 }
 mat-header-cell, mat-cell {
   justify-content: space-around;
