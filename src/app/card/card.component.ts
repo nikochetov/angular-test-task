@@ -4,7 +4,6 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { validateSNILS } from '../my.validators';
 import * as moment from 'moment';
 
-
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -13,7 +12,9 @@ import * as moment from 'moment';
 })
 
 export class CardComponent implements OnInit {
+
   @ViewChild('stepper') stepper;
+
   userNameFormGroup: FormGroup;
   birthFormGroup: FormGroup;
   snilsFormGroup: FormGroup;
@@ -25,8 +26,7 @@ export class CardComponent implements OnInit {
   maxDate = new Date();
   mask = [/[1-9]/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, ' ', /\d/, /\d/];
 
-  constructor(public userService: UserService) {
-  }
+  constructor(public userService: UserService) {}
 
   ngOnInit(): void {
     moment().format();
@@ -84,6 +84,7 @@ export class CardComponent implements OnInit {
     this.isDisabled = false;
     this.editable = !this.editable;
   }
+
   addUser(): void {
     this.userService.addUser(this.userService.user);
     this.stepper.reset();
@@ -98,9 +99,5 @@ export class CardComponent implements OnInit {
 
   date({value}): void {
     this._dateOfBirth.setValue(value);
-  }
-
-  clicked(e): void {
-    console.log(e);
   }
 }

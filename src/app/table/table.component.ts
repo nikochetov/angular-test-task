@@ -1,18 +1,19 @@
 import { Component, OnInit, } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../user';
-import {MatTableDataSource} from '@angular/material/table';
-import {SelectionModel} from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
+
 export class TableComponent implements OnInit{
 
-  constructor(public userService: UserService) {
-  }
+  constructor(public userService: UserService) {}
+
   displayedColumns: string[] = ['select', 'userName', 'birth', 'gender', 'snils'];
   selection = new SelectionModel<User>(true, []);
 
