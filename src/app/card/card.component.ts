@@ -8,7 +8,7 @@ import * as moment from 'moment';
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
-  providers: []
+  providers: [],
 })
 
 export class CardComponent implements OnInit {
@@ -26,29 +26,30 @@ export class CardComponent implements OnInit {
   maxDate = new Date();
   mask = [/[1-9]/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, ' ', /\d/, /\d/];
 
-  constructor(public userService: UserService) {}
+  constructor(public userService: UserService) {
+  }
 
   ngOnInit(): void {
     moment().format();
     this.userNameFormGroup = new FormGroup({
       userName: new FormControl('', [
         Validators.pattern(/^[А-Я, а-я]/),
-        Validators.required
-      ])
+        Validators.required,
+      ]),
     });
     this.birthFormGroup = new FormGroup({
-      dateOfBirth: new FormControl()
+      dateOfBirth: new FormControl(),
     });
     this.genderFormGroup = new FormGroup({
       gender: new FormControl('', [
-        Validators.required
-      ])
+        Validators.required,
+      ]),
     });
     this.snilsFormGroup = new FormGroup({
       snils: new FormControl('', [
         Validators.required,
-        validateSNILS
-      ])
+        validateSNILS,
+      ]),
     });
   }
 
@@ -78,7 +79,7 @@ export class CardComponent implements OnInit {
       ...this.userNameFormGroup.value,
       dateOfBirth: this.formatDate(this._dateOfBirth.value),
       ...this.genderFormGroup.value,
-      ...this.snilsFormGroup.value
+      ...this.snilsFormGroup.value,
     };
     this.isSubmit = true;
     this.isDisabled = false;
@@ -86,7 +87,7 @@ export class CardComponent implements OnInit {
   }
 
   addUser(): void {
-    this.userService.addUser(this.userService.user);
+    this.userService.usersData$.next([...this.userService.getUsers(), this.userService.user]);
     this.stepper.reset();
     this.isDisabled = !this.isDisabled;
     this.isSubmit = !this.isSubmit;
@@ -97,7 +98,7 @@ export class CardComponent implements OnInit {
     return moment(date).format('DD.MM.yyyy');
   }
 
-  date({value}): void {
+  date({ value }): void {
     this._dateOfBirth.setValue(value);
   }
 }

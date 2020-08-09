@@ -1,7 +1,6 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../user';
-import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
@@ -10,26 +9,29 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./table.component.css'],
 })
 
-export class TableComponent implements OnInit{
+export class TableComponent implements OnInit {
 
-  constructor(public userService: UserService) {}
+  constructor(public userService: UserService) {
+  }
 
   displayedColumns: string[] = ['select', 'userName', 'birth', 'gender', 'snils'];
   selection = new SelectionModel<User>(true, []);
+  dataSource: User[];
 
   ngOnInit(): void {
+    this.userService.usersData$.subscribe(value => this.dataSource = value);
   }
 
   isAllSelected(): any {
     const numSelected = this.selection.selected.length;
-    const numRows = this.userService.dataSource.data.length;
+    const numRows = this.dataSource.length;
     return numSelected === numRows;
   }
 
   masterToggle(): void {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.userService.dataSource.data.forEach(row => this.selection.select(row));
+      this.dataSource.forEach(row => this.selection.select(row));
   }
 
   checkboxLabel(row?: User): string {
@@ -41,8 +43,8 @@ export class TableComponent implements OnInit{
 
   removeFromTable(): void {
     const ids: number[] = this.selection.selected.map(user => user.id);
-    this.userService.USERS_DATA = this.userService.USERS_DATA.filter((user: User) => !ids.includes(user.id));
-    this.userService.dataSource = new MatTableDataSource(this.userService.USERS_DATA);
+    this.dataSource = this.dataSource.filter((user: User) => !ids.includes(user.id));
+    this.userService.usersData$.next(this.dataSource);
     this.selection.clear();
   }
 }
